@@ -29,6 +29,7 @@ async function run() {
         await client.connect();
         const menuCollection = client.db('bistro').collection('menu')
         const reviewsCollection = client.db('bistro').collection('reviews')
+        const cartCollection = client.db('bistro').collection('cart')
 
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
@@ -44,6 +45,11 @@ async function run() {
             const cursor = await reviewsCollection.find(queary);
             const result = await cursor.toArray();
             res.send(result);
+        })
+
+        app.post('/cart', (req, res) => {
+            const data = req.body;
+            console.log(data);
         })
 
     } finally {
