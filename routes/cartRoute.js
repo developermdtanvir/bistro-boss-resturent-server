@@ -1,6 +1,7 @@
 // routes/index.js
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 
 const { cartCollection } = require('../db')
 
@@ -23,7 +24,7 @@ const varifyJWT = (req, res, next) => {
 
 }
 
-router.get('/cart', varifyJWT, async (req, res) => {
+router.get('/', varifyJWT, async (req, res) => {
     const decodedEmail = req.decoded
     const email = req.query.email;
     if (decodedEmail !== email) {
