@@ -11,5 +11,11 @@ router.get('/', async (req, res) => {
     res.send(result);
 });
 
+router.post('/', async (req, res) => {
+    const data = req.body;
+    const result = await menuCollection.insertOne(data);
+    res.send(result);
+})
+
 module.exports = router
 

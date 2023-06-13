@@ -11,7 +11,7 @@ const jwtRoutes = require('./routes/jwtRoute')
 const { connectToMongoDB } = require('./db');
 
 // middleware 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 
