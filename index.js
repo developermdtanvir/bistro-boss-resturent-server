@@ -15,6 +15,8 @@ app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 
+
+
 connectToMongoDB().catch(console.error);
 
 

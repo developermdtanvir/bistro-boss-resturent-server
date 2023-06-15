@@ -5,25 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const { cartCollection } = require('../db');
 const { ObjectId } = require('mongodb');
-
-
-const varifyJWT = (req, res, next) => {
-    const authorizetion = req.headers.authorizetion
-
-    if (!authorizetion) {
-        res.status(403).send({ error: true, message: 'unauthorize access' })
-    }
-    const token = authorizetion.split(' ')[1]
-
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECREET, (error, decoded) => {
-        if (error) {
-            return res.status(401).send({ error: true, message: 'unauthorize access' })
-        }
-        req.decoded = decoded.email;
-        next()
-    })
-
-}
+const varifyJWT = require('./verifyJWT')
 
 router.get('/', varifyJWT, async (req, res) => {
     const decodedEmail = req.decoded
